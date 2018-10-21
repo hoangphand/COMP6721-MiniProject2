@@ -11,13 +11,13 @@ train_count_label = []
 
 prior_els = []
 
-for i in range(len(count_label)):
+for i in range(image_util.DS1_LABEL_SIZE):
 	el = []
 	for j in range(len(train_set[0])):
 		el.append(0)
 	prior_els.append(el)
 
-for i in range(len(train_set)):
+for i in range(image_util.DS1_TRAIN_SIZE):
 	for j in range(len(train_set[0])):
 		prior_els[train_label[i]][j] = prior_els[train_label[i]][j] + train_set[i][j]
 
@@ -30,7 +30,7 @@ correct_count = 0
 
 for row in range(image_util.DS1_VAL_SIZE):
 	predictions = []
-	for i in range(len(count_label)):
+	for i in range(image_util.DS1_LABEL_SIZE):
 		tmp = 1
 		for j in range(len(train_set[0])):
 			if val_set[row][j] == 1:
@@ -41,7 +41,7 @@ for row in range(image_util.DS1_VAL_SIZE):
 
 	prediction = -1
 
-	for i in range(len(count_label)):
+	for i in range(image_util.DS1_LABEL_SIZE):
 		if predictions[i] > prediction:
 			prediction = predictions[i]
 			ans = i
